@@ -20,7 +20,7 @@ get_filter() {
     return 1
 }
 
-pdir="$(builtin cd "$(dirname "$0")" && pwd)"
+pdir="$(builtin cd "$(dirname "$(readlink $0 || $0)")" && pwd)"
 
 filter="$(get_filter "${F:-fzf-tmux --header-lines=1:fzy:peco:fzf}")"
 if [[ -z $filter ]]; then
